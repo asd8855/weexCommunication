@@ -11,14 +11,14 @@
             jsTonative() {
                 //这块必须写对
                 const eventModule = weex.requireModule('event');
-                eventModule.openURL('hello js,I`m native');
+                eventModule.openURL('hello native,I`m js');
             },
         },
 
         created() {
             const globalEvent = weex.requireModule('globalEvent');
             globalEvent.addEventListener("sayhello", function (e) {
-                console.log('sayhello', e);
+                console.log(e.key);
             });
         },
     }

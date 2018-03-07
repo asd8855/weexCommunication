@@ -2742,14 +2742,14 @@ exports.default = {
         jsTonative: function jsTonative() {
             //这块必须写对
             var eventModule = weex.requireModule('event');
-            eventModule.openURL('hello js,I`m native');
+            eventModule.openURL('hello native,I`m js');
         }
     },
 
     created: function created() {
         var globalEvent = weex.requireModule('globalEvent');
         globalEvent.addEventListener("sayhello", function (e) {
-            console.log('sayhello', e);
+            console.log(e.key);
         });
     }
 };
