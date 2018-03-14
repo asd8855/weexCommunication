@@ -5,6 +5,8 @@
 </template>
 
 <script>
+    const modal = weex.requireModule('modal');
+    const globalEvent = weex.requireModule('globalEvent');
     export default {
 
         methods: {
@@ -16,10 +18,16 @@
         },
 
         created() {
-            const globalEvent = weex.requireModule('globalEvent');
             globalEvent.addEventListener("sayhello", function (e) {
                 console.log(e.key);
+                modal.toast({
+                    message: e.key,
+                    duration: 3
+                })
             });
+        },
+        destroyed() {
+            globalEvent.removeEventListener("sayhello");
         },
     }
 </script>

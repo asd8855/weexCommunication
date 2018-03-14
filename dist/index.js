@@ -76,7 +76,7 @@
 
 /* weex initialized here, please do not move this line */
 var router = __webpack_require__(1);
-var App = __webpack_require__(5);
+var App = __webpack_require__(7);
 /* eslint-disable no-new */
 new Vue(Vue.util.extend({ el: '#root', router: router }, App));
 router.push('/');
@@ -2577,14 +2577,14 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = []
 
 /* styles */
-__vue_styles__.push(__webpack_require__(10)
+__vue_styles__.push(__webpack_require__(4)
 )
 
 /* script */
-__vue_exports__ = __webpack_require__(9)
+__vue_exports__ = __webpack_require__(5)
 
 /* template */
-var __vue_template__ = __webpack_require__(4)
+var __vue_template__ = __webpack_require__(6)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -2617,6 +2617,69 @@ module.exports = __vue_exports__
 /* 4 */
 /***/ (function(module, exports) {
 
+module.exports = {
+  "wrapper": {
+    "justifyContent": "center",
+    "alignItems": "center"
+  },
+  "text": {
+    "width": "100",
+    "height": "100",
+    "backgroundColor": "#00B4FF",
+    "marginTop": "50",
+    "marginRight": "50",
+    "marginBottom": "50",
+    "marginLeft": "50"
+  }
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+
+var modal = weex.requireModule('modal');
+var globalEvent = weex.requireModule('globalEvent');
+exports.default = {
+
+    methods: {
+        jsTonative: function jsTonative() {
+            //这块必须写对
+            var eventModule = weex.requireModule('event');
+            eventModule.openURL('hello native,I`m js');
+        }
+    },
+
+    created: function created() {
+        globalEvent.addEventListener("sayhello", function (e) {
+            console.log(e.key);
+            modal.toast({
+                message: e.key,
+                duration: 3
+            });
+        });
+    },
+    destroyed: function destroyed() {
+        globalEvent.removeEventListener("sayhello");
+    }
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: ["wrapper"]
@@ -2630,21 +2693,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports.render._withStripped = true
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = []
 
 /* styles */
-__vue_styles__.push(__webpack_require__(6)
+__vue_styles__.push(__webpack_require__(8)
 )
 
 /* script */
-__vue_exports__ = __webpack_require__(7)
+__vue_exports__ = __webpack_require__(9)
 
 /* template */
-var __vue_template__ = __webpack_require__(8)
+var __vue_template__ = __webpack_require__(10)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -2674,7 +2737,7 @@ module.exports = __vue_exports__
 
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -2685,7 +2748,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2709,7 +2772,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2718,61 +2781,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('router-view')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-
-    methods: {
-        jsTonative: function jsTonative() {
-            //这块必须写对
-            var eventModule = weex.requireModule('event');
-            eventModule.openURL('hello native,I`m js');
-        }
-    },
-
-    created: function created() {
-        var globalEvent = weex.requireModule('globalEvent');
-        globalEvent.addEventListener("sayhello", function (e) {
-            console.log(e.key);
-        });
-    }
-};
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = {
-  "wrapper": {
-    "justifyContent": "center",
-    "alignItems": "center"
-  },
-  "text": {
-    "width": "100",
-    "height": "100",
-    "backgroundColor": "#00B4FF",
-    "marginTop": "50",
-    "marginRight": "50",
-    "marginBottom": "50",
-    "marginLeft": "50"
-  }
-}
 
 /***/ })
 /******/ ]);
